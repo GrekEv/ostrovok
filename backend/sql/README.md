@@ -1,13 +1,13 @@
-# SQL аналитики Ольги
+# SQL
 
-Файлы из https://github.com/Olga1998-power/Ostrovok/tree/main/analytics
+- `init.sql` — `travel_cards`, `user_swipes`
+- `mock_data.sql` — стартовый каталог
+- `02b-local-photos.sql` — локальные фото `/static/places`
+- `03-app_extras.sql` — сохранённое, брони, онбординг
+- `04-extra-cards.sql` — дополнительные карточки
+- `recommendations.sql` — пример ранжирования по лайкам
 
-- `init.sql` и `mock_data.sql` — без правок, как в её репозитории.
-- `recommendations.sql` — эталон алгоритма лайков по JSONB-тегам; в Go он параметризован в `internal/store/postgres.go`.
-- `02b-local-photos.sql` — подмена `https://unsplash.com` на фото `/static/places`.
-- `03-app_extras.sql` — заявки и онбординг, поверх её схемы.
-
-Пересоздать базу после смены SQL:
+Пересоздать базу:
 
 ```bash
 docker compose down -v

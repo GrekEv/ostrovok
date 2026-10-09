@@ -112,27 +112,7 @@ class RecommendationEngine {
     UserPreferences preferences,
     List<SwipeEvent> swipes,
   ) {
-    final liked = swipes.any((e) => e.liked);
-    final hits = offer.tags
-        .where((tag) => (profile.tags[tag] ?? 0) >= 1.5)
-        .take(3)
-        .toList();
-    if (liked && hits.isNotEmpty) {
-      return 'ИИ: близко к вашим лайкам — ${hits.join(', ')}.';
-    }
-    if (!preferences.skipped &&
-        preferences.countryCodes.contains(offer.countryCode)) {
-      return 'ИИ: страна из онбординга и высокий рейтинг.';
-    }
-    if ((profile.budgets[BudgetTier.mid] ?? 0) > 0 &&
-        offer.budgetTier == BudgetTier.mid &&
-        offer.kind == OfferKind.hotel) {
-      return 'ИИ: универсальный старт — средний отель, город и комфорт.';
-    }
-    if (hits.isNotEmpty) {
-      return 'ИИ: совпали приоритеты — ${hits.join(', ')}.';
-    }
-    return 'ИИ: разнообразие колоды, чтобы не зациклиться на одном типе.';
+    return 'мы подбираем места под твои желания и карточки свайпа';
   }
 }
 

@@ -1,4 +1,3 @@
--- Дополнительные карточки, чтобы после 5 свайпов колода не заканчивалась.
 INSERT INTO travel_cards (
     id, kind, title, city, country, country_code,
     short_description, description, price_per_night, currency,

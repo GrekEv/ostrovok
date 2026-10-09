@@ -164,8 +164,6 @@ class OfferCard extends StatelessWidget {
                     const SizedBox(height: 8),
                     Text(
                       offer.whyRecommended,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                         color: AppColors.forest,
                         fontWeight: FontWeight.w600,

@@ -1,4 +1,3 @@
--- Заявки приложения. Схему карточек и свайпов не трогает.
 CREATE TABLE IF NOT EXISTS user_preferences (
     guest_id TEXT PRIMARY KEY,
     country_codes TEXT[] NOT NULL DEFAULT '{}',

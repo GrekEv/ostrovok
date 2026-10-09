@@ -7,10 +7,10 @@ Telegram открывает обычный сайт по HTTPS. Карточки
 ## 1. Запустите API
 
 ```powershell
-.\scripts\run-backend.ps1
+powershell -ExecutionPolicy Bypass -File .\scripts\run-local.ps1
 ```
 
-Проверка в браузере компьютера: http://127.0.0.1:8080 — должны быть карточки.
+Проверка: http://127.0.0.1:8080/ и http://127.0.0.1:8080/health (`"store":"postgresql"`). Полный разбор запуска и токенов: [LAUNCH.md](LAUNCH.md).
 
 ## 2. Дайте сайту HTTPS-адрес
 

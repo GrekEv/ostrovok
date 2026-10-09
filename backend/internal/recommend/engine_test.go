@@ -48,10 +48,10 @@ func TestSeaLikesBoostBeachOffers(t *testing.T) {
 	}
 }
 
-func TestRankAddsAIReason(t *testing.T) {
+func TestRankAddsReason(t *testing.T) {
 	engine := recommend.Engine{}
 	ranked := engine.Rank(catalog.Offers(), domain.Preferences{Skipped: true}, nil)
 	if ranked[0].WhyRecommended == "" {
-		t.Fatal("ожидали пояснение ИИ у первой карточки")
+		t.Fatal("ожидали пояснение у первой карточки")
 	}
 }

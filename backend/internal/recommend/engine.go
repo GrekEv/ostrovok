@@ -1,15 +1,12 @@
 package recommend
 
 import (
-	"strings"
-
 	"ostrovok/internal/catalog"
 	"ostrovok/internal/domain"
 )
 
 const DeckSize = 24
 
-// Engine — контентная модель: онбординг + свайпы → профиль, затем MMR.
 type Engine struct{}
 
 type scored struct {
@@ -132,42 +129,6 @@ func score(o domain.Offer, p profile) float64 {
 	return v
 }
 
-func explain(o domain.Offer, p profile, prefs domain.Preferences, swipes []domain.Swipe) string {
-	liked := false
-	for _, s := range swipes {
-		if s.Liked {
-			liked = true
-			break
-		}
-	}
-	var hits []string
-	for _, t := range o.Tags {
-		if p.tags[t] >= 1.5 {
-			hits = append(hits, t)
-		}
-	}
-	if len(hits) > 3 {
-		hits = hits[:3]
-	}
-	switch {
-	case liked && len(hits) > 0:
-		return "ИИ: близко к вашим лайкам — " + strings.Join(hits, ", ") + "."
-	case !prefs.Skipped && len(prefs.CountryCodes) > 0 && contains(prefs.CountryCodes, o.CountryCode):
-		return "ИИ: страна из онбординга и высокий рейтинг."
-	case p.budgets[domain.BudgetMid] > 0 && o.Budget == domain.BudgetMid && o.Kind == domain.KindHotel:
-		return "ИИ: универсальный старт — средний отель, город и комфорт."
-	case len(hits) > 0:
-		return "ИИ: совпали приоритеты — " + strings.Join(hits, ", ") + "."
-	default:
-		return "ИИ: разнообразие колоды, чтобы не зациклиться на одном типе."
-	}
-}
-
-func contains(items []string, value string) bool {
-	for _, item := range items {
-		if item == value {
-			return true
-		}
-	}
-	return false
+func explain(_ domain.Offer, _ profile, _ domain.Preferences, _ []domain.Swipe) string {
+	return "мы подбираем места под твои желания и карточки свайпа"
 }

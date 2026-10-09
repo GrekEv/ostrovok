@@ -35,6 +35,12 @@ services:
     environment:
       PORT: "8080"
       DATABASE_URL: postgres://ostrovok_user:super_secret_password@postgres_db:5432/ostrovok_travel?sslmode=disable
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:-}
+      TELEGRAM_REQUIRE_INITDATA: ${TELEGRAM_REQUIRE_INITDATA:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OSTROVOK_LLM_API_KEY: ${OSTROVOK_LLM_API_KEY:-}
+      OSTROVOK_LLM_BASE_URL: ${OSTROVOK_LLM_BASE_URL:-}
+      OSTROVOK_LLM_MODEL: ${OSTROVOK_LLM_MODEL:-}
     ports:
       - "${OSTROVOK_API_PORT:-8080}:8080"
     depends_on:

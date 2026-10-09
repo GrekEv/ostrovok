@@ -463,18 +463,6 @@ func budgetFrom(price float64, tags []string) domain.Budget {
 	}
 }
 
-func explainOlga(offer domain.Offer, score float64, prefs domain.Preferences) string {
-	if score >= 1 {
-		hits := offer.Tags
-		if len(hits) > 3 {
-			hits = hits[:3]
-		}
-		return "ИИ: теги из ваших лайков в PostgreSQL — " + strings.Join(hits, ", ") + "."
-	}
-	for _, code := range prefs.CountryCodes {
-		if code == offer.CountryCode {
-			return "ИИ: страна из онбординга, рейтинг " + fmt.Sprintf("%.1f", offer.Rating) + "."
-		}
-	}
-	return "ИИ: следующая карточка после пересчёта тегов в PostgreSQL."
+func explainOlga(_ domain.Offer, _ float64, _ domain.Preferences) string {
+	return "мы подбираем места под твои желания и карточки свайпа"
 }

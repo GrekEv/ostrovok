@@ -16,7 +16,7 @@ void main() {
     expect(ranked, isNotEmpty);
     expect(ranked.first.kind, OfferKind.hotel);
     expect(ranked.first.budgetTier, BudgetTier.mid);
-    expect(ranked.first.whyRecommended, contains('ИИ'));
+    expect(ranked.first.whyRecommended, contains('подбираем места'));
   });
 
   test('seen cards are removed and sea preference is learned', () {
