@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: ostrovok-api
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        value: "8080"

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <title>Островок</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link rel="stylesheet" href="/tg/app.css">
+</head>
+<body>
+  <main class="screen">
+    <header class="top">
+      <div class="brand">Островок</div>
+      <div id="status" class="status">подключение…</div>
+    </header>
+    <p class="hint">Вправо — нравится, влево — мимо. Подбор пишется в Postgres.</p>
+    <section id="card-stage" class="stage"></section>
+    <div class="actions">
+      <button id="nope" class="round nope" type="button" aria-label="Мимо">✕</button>
+      <button id="like" class="round like" type="button" aria-label="Нравится">♥</button>
+    </div>
+  </main>
+  <script src="/tg/app.js"></script>
+</body>
+</html>

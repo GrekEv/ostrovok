@@ -1,0 +1,438 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AA0001010000000000000001 /* OstrovokApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0001010000000000000001 /* OstrovokApp.swift */; };
+		AA0001020000000000000001 /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0001020000000000000001 /* FeatureFlags.swift */; };
+		AA0001030000000000000001 /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0001030000000000000001 /* Palette.swift */; };
+		AA0001040000000000000001 /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0001040000000000000001 /* Offer.swift */; };
+		AA0001050000000000000001 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0001050000000000000001 /* UserPreferences.swift */; };
+		AA0001060000000000000001 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0001060000000000000001 /* ChatMessage.swift */; };
+		AA0001070000000000000001 /* Catalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0001070000000000000001 /* Catalog.swift */; };
+		AA0001080000000000000001 /* RecommendationEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0001080000000000000001 /* RecommendationEngine.swift */; };
+		AA0001090000000000000001 /* AgentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0001090000000000000001 /* AgentService.swift */; };
+		AA0001100000000000000001 /* AppSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0001100000000000000001 /* AppSession.swift */; };
+		AA0001110000000000000001 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0001110000000000000001 /* RootView.swift */; };
+		AA0001120000000000000001 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0001120000000000000001 /* MainTabView.swift */; };
+		AA0001130000000000000001 /* AuthPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0001130000000000000001 /* AuthPlaceholderView.swift */; };
+		AA0001140000000000000001 /* OstrovokMascot.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0001140000000000000001 /* OstrovokMascot.swift */; };
+		AA0001150000000000000001 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0001150000000000000001 /* Buttons.swift */; };
+		AA0001160000000000000001 /* OnboardingFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0001160000000000000001 /* OnboardingFlowView.swift */; };
+		AA0001170000000000000001 /* CountrySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0001170000000000000001 /* CountrySelectionView.swift */; };
+		AA0001180000000000000001 /* PrioritiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0001180000000000000001 /* PrioritiesView.swift */; };
+		AA0001190000000000000001 /* CardsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0001190000000000000001 /* CardsFeedView.swift */; };
+		AA0001200000000000000001 /* SwipeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0001200000000000000001 /* SwipeCardView.swift */; };
+		AA0001210000000000000001 /* OfferDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0001210000000000000001 /* OfferDetailView.swift */; };
+		AA0001220000000000000001 /* AgentChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0001220000000000000001 /* AgentChatView.swift */; };
+		AA0001230000000000000001 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0001230000000000000001 /* ProfileView.swift */; };
+		AA0001240000000000000001 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0001240000000000000001 /* Preview.swift */; };
+		AA0001250000000000000001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB0001250000000000000001 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		AB0000010000000000000001 /* Ostrovok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ostrovok.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB0001010000000000000001 /* OstrovokApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OstrovokApp.swift; sourceTree = "<group>"; };
+		AB0001020000000000000001 /* FeatureFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlags.swift; sourceTree = "<group>"; };
+		AB0001030000000000000001 /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
+		AB0001040000000000000001 /* Offer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
+		AB0001050000000000000001 /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
+		AB0001060000000000000001 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
+		AB0001070000000000000001 /* Catalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catalog.swift; sourceTree = "<group>"; };
+		AB0001080000000000000001 /* RecommendationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationEngine.swift; sourceTree = "<group>"; };
+		AB0001090000000000000001 /* AgentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentService.swift; sourceTree = "<group>"; };
+		AB0001100000000000000001 /* AppSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSession.swift; sourceTree = "<group>"; };
+		AB0001110000000000000001 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		AB0001120000000000000001 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		AB0001130000000000000001 /* AuthPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPlaceholderView.swift; sourceTree = "<group>"; };
+		AB0001140000000000000001 /* OstrovokMascot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OstrovokMascot.swift; sourceTree = "<group>"; };
+		AB0001150000000000000001 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
+		AB0001160000000000000001 /* OnboardingFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlowView.swift; sourceTree = "<group>"; };
+		AB0001170000000000000001 /* CountrySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountrySelectionView.swift; sourceTree = "<group>"; };
+		AB0001180000000000000001 /* PrioritiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrioritiesView.swift; sourceTree = "<group>"; };
+		AB0001190000000000000001 /* CardsFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsFeedView.swift; sourceTree = "<group>"; };
+		AB0001200000000000000001 /* SwipeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCardView.swift; sourceTree = "<group>"; };
+		AB0001210000000000000001 /* OfferDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDetailView.swift; sourceTree = "<group>"; };
+		AB0001220000000000000001 /* AgentChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentChatView.swift; sourceTree = "<group>"; };
+		AB0001230000000000000001 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		AB0001240000000000000001 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
+		AB0001250000000000000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AB0001260000000000000001 /* Preview Content */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Preview Content"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AA0002010000000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AA0003010000000000000001 = {
+			isa = PBXGroup;
+			children = (
+				AA0003020000000000000001 /* Ostrovok */,
+				AA0003030000000000000001 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AA0003030000000000000001 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AB0000010000000000000001 /* Ostrovok.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AA0003020000000000000001 /* Ostrovok */ = {
+			isa = PBXGroup;
+			children = (
+				AB0001010000000000000001 /* OstrovokApp.swift */,
+				AB0001020000000000000001 /* FeatureFlags.swift */,
+				AA0003040000000000000001 /* App */,
+				AA0003050000000000000001 /* Theme */,
+				AA0003060000000000000001 /* Models */,
+				AA0003070000000000000001 /* Data */,
+				AA0003080000000000000001 /* Services */,
+				AA0003090000000000000001 /* Components */,
+				AA0003100000000000000001 /* Features */,
+				AB0001250000000000000001 /* Assets.xcassets */,
+				AB0001260000000000000001 /* Preview Content */,
+				AB0001240000000000000001 /* Preview.swift */,
+			);
+			path = Ostrovok;
+			sourceTree = "<group>";
+		};
+		AA0003040000000000000001 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				AB0001100000000000000001 /* AppSession.swift */,
+				AB0001110000000000000001 /* RootView.swift */,
+				AB0001120000000000000001 /* MainTabView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		AA0003050000000000000001 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				AB0001030000000000000001 /* Palette.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		AA0003060000000000000001 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AB0001040000000000000001 /* Offer.swift */,
+				AB0001050000000000000001 /* UserPreferences.swift */,
+				AB0001060000000000000001 /* ChatMessage.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AA0003070000000000000001 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				AB0001070000000000000001 /* Catalog.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		AA0003080000000000000001 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				AB0001080000000000000001 /* RecommendationEngine.swift */,
+				AB0001090000000000000001 /* AgentService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		AA0003090000000000000001 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				AB0001140000000000000001 /* OstrovokMascot.swift */,
+				AB0001150000000000000001 /* Buttons.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		AA0003100000000000000001 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				AA0003110000000000000001 /* Auth */,
+				AA0003120000000000000001 /* Onboarding */,
+				AA0003130000000000000001 /* Cards */,
+				AA0003140000000000000001 /* Agent */,
+				AA0003150000000000000001 /* Profile */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		AA0003110000000000000001 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				AB0001130000000000000001 /* AuthPlaceholderView.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		AA0003120000000000000001 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				AB0001160000000000000001 /* OnboardingFlowView.swift */,
+				AB0001170000000000000001 /* CountrySelectionView.swift */,
+				AB0001180000000000000001 /* PrioritiesView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		AA0003130000000000000001 /* Cards */ = {
+			isa = PBXGroup;
+			children = (
+				AB0001190000000000000001 /* CardsFeedView.swift */,
+				AB0001200000000000000001 /* SwipeCardView.swift */,
+				AB0001210000000000000001 /* OfferDetailView.swift */,
+			);
+			path = Cards;
+			sourceTree = "<group>";
+		};
+		AA0003140000000000000001 /* Agent */ = {
+			isa = PBXGroup;
+			children = (
+				AB0001220000000000000001 /* AgentChatView.swift */,
+			);
+			path = Agent;
+			sourceTree = "<group>";
+		};
+		AA0003150000000000000001 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				AB0001230000000000000001 /* ProfileView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AA0004010000000000000001 /* Ostrovok */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA0005010000000000000001 /* Build configuration list for PBXNativeTarget "Ostrovok" */;
+			buildPhases = (
+				AA0004020000000000000001 /* Sources */,
+				AA0002010000000000000001 /* Frameworks */,
+				AA0004030000000000000001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Ostrovok;
+			productName = Ostrovok;
+			productReference = AB0000010000000000000001 /* Ostrovok.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AA0000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					AA0004010000000000000001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = AA0005000000000000000001 /* Build configuration list for PBXProject "Ostrovok" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = ru;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				ru,
+				Base,
+			);
+			mainGroup = AA0003010000000000000001;
+			productRefGroup = AA0003030000000000000001 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AA0004010000000000000001 /* Ostrovok */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AA0004030000000000000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA0001250000000000000001 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AA0004020000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA0001010000000000000001 /* OstrovokApp.swift in Sources */,
+				AA0001020000000000000001 /* FeatureFlags.swift in Sources */,
+				AA0001030000000000000001 /* Palette.swift in Sources */,
+				AA0001040000000000000001 /* Offer.swift in Sources */,
+				AA0001050000000000000001 /* UserPreferences.swift in Sources */,
+				AA0001060000000000000001 /* ChatMessage.swift in Sources */,
+				AA0001070000000000000001 /* Catalog.swift in Sources */,
+				AA0001080000000000000001 /* RecommendationEngine.swift in Sources */,
+				AA0001090000000000000001 /* AgentService.swift in Sources */,
+				AA0001100000000000000001 /* AppSession.swift in Sources */,
+				AA0001110000000000000001 /* RootView.swift in Sources */,
+				AA0001120000000000000001 /* MainTabView.swift in Sources */,
+				AA0001130000000000000001 /* AuthPlaceholderView.swift in Sources */,
+				AA0001140000000000000001 /* OstrovokMascot.swift in Sources */,
+				AA0001150000000000000001 /* Buttons.swift in Sources */,
+				AA0001160000000000000001 /* OnboardingFlowView.swift in Sources */,
+				AA0001170000000000000001 /* CountrySelectionView.swift in Sources */,
+				AA0001180000000000000001 /* PrioritiesView.swift in Sources */,
+				AA0001190000000000000001 /* CardsFeedView.swift in Sources */,
+				AA0001200000000000000001 /* SwipeCardView.swift in Sources */,
+				AA0001210000000000000001 /* OfferDetailView.swift in Sources */,
+				AA0001220000000000000001 /* AgentChatView.swift in Sources */,
+				AA0001230000000000000001 /* ProfileView.swift in Sources */,
+				AA0001240000000000000001 /* Preview.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		AA0006010000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		AA0006020000000000000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 5.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AA0006030000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "Ostrovok/Preview Content";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Ostrovok/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.ostrovok.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		AA0006040000000000000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "Ostrovok/Preview Content";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Ostrovok/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.ostrovok.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AA0005000000000000000001 /* Build configuration list for PBXProject "Ostrovok" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA0006010000000000000001 /* Debug */,
+				AA0006020000000000000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA0005010000000000000001 /* Build configuration list for PBXNativeTarget "Ostrovok" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA0006030000000000000001 /* Debug */,
+				AA0006040000000000000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AA0000000000000000000001 /* Project object */;
+}

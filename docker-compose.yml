@@ -1,0 +1,45 @@
+services:
+  postgres_db:
+    image: postgres:15
+    container_name: ostrovok_postgres
+    environment:
+      POSTGRES_USER: ostrovok_user
+      POSTGRES_PASSWORD: super_secret_password
+      POSTGRES_DB: ostrovok_travel
+    ports:
+      - "${OSTROVOK_POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./backend/sql/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+      - ./backend/sql/mock_data.sql:/docker-entrypoint-initdb.d/02-mock_data.sql:ro
+      - ./backend/sql/02b-local-photos.sql:/docker-entrypoint-initdb.d/02b-local-photos.sql:ro
+      - ./backend/sql/03-app_extras.sql:/docker-entrypoint-initdb.d/03-app_extras.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ostrovok_user -d ostrovok_travel"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+
+  cache_redis:
+    image: redis:7-alpine
+    container_name: ostrovok_redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+  api:
+    build:
+      context: ./backend
+    environment:
+      PORT: "8080"
+      DATABASE_URL: postgres://ostrovok_user:super_secret_password@postgres_db:5432/ostrovok_travel?sslmode=disable
+    ports:
+      - "${OSTROVOK_API_PORT:-8080}:8080"
+    depends_on:
+      postgres_db:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  pgdata:
