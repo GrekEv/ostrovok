@@ -3,23 +3,38 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-  <title>Островок</title>
+  <meta name="theme-color" content="#f7f8f5">
+  <meta name="description" content="Найдите свой идеальный отель с персональными рекомендациями Островка. Свайпайте, сохраняйте и спрашивайте AI-помощника.">
+  <title>Островок — путешествие начинается с тебя</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <link rel="stylesheet" href="/tg/app.css">
 </head>
 <body>
-  <main class="screen">
-    <header class="top">
-      <div class="brand">Островок</div>
-      <div id="status" class="status">подключение…</div>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#discover" aria-label="Островок, на главную"><span class="brand-mark">о</span><span>островок<span class="brand-dot">.</span></span></a>
+      <div class="topbar-right"><span class="live-dot"></span><span id="status" class="status">Подключаемся</span><button id="profile-shortcut" class="avatar" aria-label="Открыть профиль">✦</button></div>
     </header>
-    <p class="hint">Вправо — нравится, влево — мимо. Подбор пишется в Postgres.</p>
-    <section id="card-stage" class="stage"></section>
-    <div class="actions">
-      <button id="nope" class="round nope" type="button" aria-label="Мимо">✕</button>
-      <button id="like" class="round like" type="button" aria-label="Нравится">♥</button>
-    </div>
+
+    <section id="view-discover" class="view active" aria-labelledby="discover-title">
+      <div class="intro-row"><div><p class="eyebrow">ТВОЙ СЛЕДУЮЩИЙ ВАУ-МОМЕНТ</p><h1 id="discover-title">Куда душа<br><em>лежит?</em></h1></div><div class="sparkle" aria-hidden="true">✳</div></div>
+      <p class="subhead">Свайпай места, которые цепляют. Мы быстро поймём твой вайб.</p>
+      <div class="deck-meta"><span id="deck-count">Подбираем для тебя</span><span class="swipe-hint"><span>←</span> мимо&nbsp;&nbsp; <span>→</span> хочу</span></div>
+      <section id="card-stage" class="stage" aria-live="polite"><div class="loading-card"><span class="loader"></span><p>Ищем места под твой вайб…</p></div></section>
+      <div class="action-row"><button id="nope" class="action-button pass" aria-label="Не нравится"><span>×</span></button><button id="details" class="detail-button" aria-label="Подробнее о месте">Подробнее <span>↗</span></button><button id="like" class="action-button like" aria-label="Нравится"><span>♥</span></button></div>
+      <p class="microcopy">Каждый свайп обучает персональную подборку</p>
+    </section>
+
+    <section id="view-saved" class="view" aria-labelledby="saved-title"><div class="page-heading"><p class="eyebrow">ТВОЯ КОЛЛЕКЦИЯ</p><h1 id="saved-title">Сохранённое<span class="brand-dot">.</span></h1><p class="subhead">Места, к которым хочется вернуться.</p></div><div id="saved-list" class="saved-list"></div></section>
+
+    <section id="view-chat" class="view" aria-labelledby="chat-title"><div class="page-heading"><p class="eyebrow">AI-ПОМОЩНИК</p><h1 id="chat-title">Соберём поездку<span class="brand-dot">.</span></h1><p class="subhead">Расскажи, что хочется — найду варианты в каталоге.</p></div><div class="chat-shell"><div id="chat-messages" class="chat-messages"><div class="message assistant"><span class="assistant-avatar">✳</span><div class="bubble">Привет! Я помогу найти место под твоё настроение. Куда хочешь и какой бюджет на ночь?</div></div></div><div class="quick-prompts"><button data-prompt="Хочу море до 10000 рублей за ночь">🌊 Море до 10 000 ₽</button><button data-prompt="Подбери уютный отель для двоих">♡ Для двоих</button><button data-prompt="Хочу необычное место на выходные">✦ Необычный уикенд</button></div><form id="chat-form" class="chat-form"><input id="chat-input" type="text" maxlength="600" placeholder="Например: Тбилиси до 7000 ₽…" autocomplete="off" aria-label="Сообщение AI-помощнику"><button type="submit" aria-label="Отправить сообщение">↑</button></form></div></section>
+
+    <section id="view-profile" class="view" aria-labelledby="profile-title"><div class="page-heading"><p class="eyebrow">ТВОЙ ТРЕВЕЛ-ПРОФИЛЬ</p><h1 id="profile-title">Всё про тебя<span class="brand-dot">.</span></h1></div><div class="profile-card"><div class="profile-orb">✳</div><div><h2 id="profile-name">Путешественник</h2><p id="profile-caption">Настраиваем рекомендации по твоим свайпам</p></div></div><div class="stats-grid"><div class="stat-card"><strong id="likes-count">0</strong><span>понравилось</span></div><div class="stat-card"><strong id="swipes-count">0</strong><span>свайпов</span></div><div class="stat-card"><strong id="saved-count">0</strong><span>в коллекции</span></div></div><div class="settings-card"><div><span class="settings-icon">⌁</span><div><strong>Персональный подбор</strong><p>Рекомендации меняются после каждого свайпа</p></div></div><span class="settings-state">АКТИВЕН</span></div><button id="reset-session" class="text-button">Сбросить локальную историю</button></section>
+
+    <nav class="tabbar" aria-label="Основная навигация"><button class="tab active" data-view="discover"><span class="tab-icon">⌂</span><span>Открывать</span></button><button class="tab" data-view="saved"><span class="tab-icon">♡</span><span>Сохранено</span><span id="saved-badge" class="tab-badge hidden">0</span></button><button class="tab" data-view="chat"><span class="tab-icon">✳</span><span>AI-помощник</span></button><button class="tab" data-view="profile"><span class="tab-icon">◉</span><span>Профиль</span></button></nav>
   </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <dialog id="offer-dialog" class="offer-dialog"><button id="close-dialog" class="dialog-close" aria-label="Закрыть">×</button><div id="dialog-content"></div></dialog>
   <script src="/tg/app.js"></script>
 </body>
 </html>

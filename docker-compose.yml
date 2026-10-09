@@ -14,6 +14,7 @@ services:
       - ./backend/sql/mock_data.sql:/docker-entrypoint-initdb.d/02-mock_data.sql:ro
       - ./backend/sql/02b-local-photos.sql:/docker-entrypoint-initdb.d/02b-local-photos.sql:ro
       - ./backend/sql/03-app_extras.sql:/docker-entrypoint-initdb.d/03-app_extras.sql:ro
+      - ./backend/sql/04-extra-cards.sql:/docker-entrypoint-initdb.d/04-extra-cards.sql:ro
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ostrovok_user -d ostrovok_travel"]
       interval: 3s

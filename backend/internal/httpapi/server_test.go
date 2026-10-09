@@ -262,6 +262,43 @@ func TestSwipeIsSavedAndNextCardChanges(t *testing.T) {
 	}
 }
 
+func TestSavedCollectionFollowsLikes(t *testing.T) {
+	mux := httpapi.NewMux()
+	body, _ := json.Marshal(map[string]any{
+		"guestId":     "guest-saved",
+		"offerId":     "ht-santorini",
+		"liked":       true,
+		"tags":        []string{"море"},
+		"budgetTier":  "high",
+		"kind":        "hotel",
+		"countryCode": "GR",
+	})
+	created := httptest.NewRecorder()
+	mux.ServeHTTP(created, httptest.NewRequest(http.MethodPost, "/v1/swipes", bytes.NewReader(body)))
+	if created.Code != http.StatusCreated {
+		t.Fatalf("swipe: %d %s", created.Code, created.Body.String())
+	}
+
+	saved := httptest.NewRecorder()
+	mux.ServeHTTP(saved, httptest.NewRequest(http.MethodGet, "/v1/saved?guestId=guest-saved", nil))
+	if saved.Code != http.StatusOK {
+		t.Fatalf("saved: %d %s", saved.Code, saved.Body.String())
+	}
+	var items []domain.Offer
+	if err := json.NewDecoder(saved.Body).Decode(&items); err != nil {
+		t.Fatal(err)
+	}
+	if len(items) != 1 || items[0].ID != "ht-santorini" {
+		t.Fatalf("ожидали сохранённую карточку: %#v", items)
+	}
+
+	removed := httptest.NewRecorder()
+	mux.ServeHTTP(removed, httptest.NewRequest(http.MethodDelete, "/v1/saved?guestId=guest-saved&offerId=ht-santorini", nil))
+	if removed.Code != http.StatusOK {
+		t.Fatalf("delete saved: %d %s", removed.Code, removed.Body.String())
+	}
+}
+
 func TestManagerTicketWithoutGuestIsRejected(t *testing.T) {
 	request := httptest.NewRequest(
 		http.MethodPost,

@@ -1,16 +1,20 @@
 FROM golang:1.27-alpine AS build
 
 WORKDIR /src
-COPY go.mod ./
+ENV GOPROXY=https://proxy.golang.org,direct
+COPY go.mod go.sum ./
+RUN go mod download
 COPY . .
 RUN CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o /out/ostrovok-api ./cmd/api
 
 FROM alpine:3.22
 
-RUN addgroup -S ostrovok && adduser -S ostrovok -G ostrovok
+RUN apk add --no-cache ca-certificates wget \
+    && addgroup -S ostrovok && adduser -S ostrovok -G ostrovok
 WORKDIR /app
 COPY --from=build /out/ostrovok-api /usr/local/bin/ostrovok-api
 COPY static /app/static
+COPY webapp /app/webapp
 
 USER ostrovok
 EXPOSE 8080

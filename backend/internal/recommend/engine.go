@@ -7,7 +7,9 @@ import (
 	"ostrovok/internal/domain"
 )
 
-// Engine — контентная ИИ-модель: онбординг + свайпы → профиль, затем MMR-ранжирование.
+const DeckSize = 24
+
+// Engine — контентная модель: онбординг + свайпы → профиль, затем MMR.
 type Engine struct{}
 
 type scored struct {
@@ -42,6 +44,9 @@ func (Engine) Rank(offers []domain.Offer, prefs domain.Preferences, swipes []dom
 		chosen := pool[best].offer
 		chosen.WhyRecommended = explain(chosen, p, prefs, swipes)
 		out = append(out, chosen)
+		if len(out) >= DeckSize {
+			break
+		}
 		pool = append(pool[:best], pool[best+1:]...)
 	}
 	return out

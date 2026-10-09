@@ -31,3 +31,5 @@ CREATE TABLE IF NOT EXISTS tickets (
 );
 
 CREATE SEQUENCE IF NOT EXISTS ostrovok_id_seq START 1;
+
+CREATE UNIQUE INDEX IF NOT EXISTS user_swipes_user_card_idx ON user_swipes(user_id, card_id);

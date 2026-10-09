@@ -2,12 +2,14 @@
 
 Это рабочий MVP: Flutter-клиент + Go API. Авторизации и оплаты нет специально.
 
+Полный локальный запуск Mini App и Postgres: **[LAUNCH.md](LAUNCH.md)**.
+
 ## Что должно быть запущено
 
 Два процесса:
 
-1. API: `.\scripts\run-backend.ps1` → http://127.0.0.1:8080
-2. Приложение: `.\scripts\run-mobile.ps1`
+1. API: `.\scripts\run-local.ps1` → http://127.0.0.1:8080 (`"store":"postgresql"`)
+2. Приложение: браузер на http://127.0.0.1:8080/ или `.\scripts\run-mobile.ps1`
 
 На Windows без Pixel-эмулятора скрипт открывает **Microsoft Edge**:
 

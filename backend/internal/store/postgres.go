@@ -24,7 +24,9 @@ func Open(ctx context.Context, url string) (*Postgres, error) {
 		return nil, err
 	}
 	db.SetMaxOpenConns(8)
+	db.SetMaxIdleConns(4)
 	db.SetConnMaxLifetime(30 * time.Minute)
+	db.SetConnMaxIdleTime(5 * time.Minute)
 	if err := db.PingContext(ctx); err != nil {
 		_ = db.Close()
 		return nil, err
@@ -77,7 +79,8 @@ LEFT JOIN user_favorite_tags uft ON tc.amenities ? uft.tag
 WHERE tc.id NOT IN (SELECT card_id FROM user_swipes WHERE user_id = $1)
   AND (cardinality($2::text[]) = 0 OR tc.country = ANY($2))
 GROUP BY tc.id
-ORDER BY relevance_score DESC, tc.rating DESC`
+ORDER BY relevance_score DESC, tc.rating DESC
+LIMIT 24`
 
 	rows, err := p.db.QueryContext(ctx, query, guestID, pq.Array(countries), pq.Array(tags))
 	if err != nil {
@@ -107,8 +110,38 @@ func (p *Postgres) SaveSwipe(ctx context.Context, swipe domain.Swipe) error {
 	}
 	_, err = p.db.ExecContext(ctx, `
 INSERT INTO user_swipes (user_id, card_id, action)
-VALUES ($1, $2, $3)`, swipe.GuestID, cardID, action)
+VALUES ($1, $2, $3)
+ON CONFLICT (user_id, card_id) DO UPDATE SET
+    action = EXCLUDED.action,
+    created_at = CURRENT_TIMESTAMP`, swipe.GuestID, cardID, action)
 	return err
+}
+
+func (p *Postgres) Liked(ctx context.Context, guestID string) ([]domain.Offer, error) {
+	return p.queryCards(ctx, `
+SELECT `+olgaColumnsPrefixed+`
+FROM travel_cards tc
+JOIN user_swipes us ON us.card_id = tc.id
+WHERE us.user_id = $1 AND us.action = 'like'
+ORDER BY us.created_at DESC`, []any{guestID})
+}
+
+func (p *Postgres) DeleteLike(ctx context.Context, guestID, offerID string) error {
+	cardID, err := strconv.Atoi(offerID)
+	if err != nil {
+		return fmt.Errorf("card_id: %w", err)
+	}
+	_, err = p.db.ExecContext(ctx, `
+DELETE FROM user_swipes WHERE user_id = $1 AND card_id = $2 AND action = 'like'`, guestID, cardID)
+	return err
+}
+
+func (p *Postgres) SwipeCounts(ctx context.Context, guestID string) (int, int, error) {
+	var likes, total int
+	err := p.db.QueryRowContext(ctx, `
+SELECT COUNT(*) FILTER (WHERE action = 'like'), COUNT(*)
+FROM user_swipes WHERE user_id = $1`, guestID).Scan(&likes, &total)
+	return likes, total, err
 }
 
 func (p *Postgres) Search(ctx context.Context, city string, maxPrice int) ([]domain.Offer, error) {
@@ -123,7 +156,8 @@ WHERE ($1 = '' OR city ILIKE '%' || $1 || '%' OR country ILIKE '%' || $1 || '%'
         OR name ILIKE '%' || $1 || '%'
         OR ($1 <> '' AND search_vector @@ plainto_tsquery('russian', $1)))
   AND price <= $2
-ORDER BY rating DESC`, []any{needle, maxPrice})
+ORDER BY rating DESC
+LIMIT 8`, []any{needle, maxPrice})
 }
 
 func (p *Postgres) SavePreferences(ctx context.Context, guestID string, prefs domain.Preferences) error {
@@ -331,54 +365,56 @@ func mapOlgaCard(id int, kind string, price, rating float64, rawJSON []byte, sum
 	return offer
 }
 
+var photosByID = []string{
+	"/static/places/ht-florence.jpg",
+	"/static/places/ht-dubai.jpg",
+	"/static/places/tr-alps.jpg",
+	"/static/places/hs-barcelona.jpg",
+	"/static/places/tr-bali.jpg",
+	"/static/places/hs-bangkok.jpg",
+	"/static/places/ht-istanbul.jpg",
+	"/static/places/ht-kotor.jpg",
+	"/static/places/fl-tokyo.jpg",
+	"/static/places/fl-barcelona.jpg",
+	"/static/places/tr-tuscany.jpg",
+	"/static/places/mt-tbilisi.jpg",
+	"/static/places/ht-santorini.jpg",
+	"/static/places/ht-porto.jpg",
+}
+
 func localPhoto(id int, url string) string {
-	if strings.Contains(url, "/static/places/") {
+	if strings.Contains(url, "/static/places/") && !strings.Contains(strings.ToLower(url), "unsplash") {
 		return url
 	}
-	fallback := map[int]string{
-		1: "/static/places/ht-porto.jpg",
-		2: "/static/places/ht-dubai.jpg",
-		3: "/static/places/tr-alps.jpg",
-		4: "/static/places/hs-barcelona.jpg",
-		5: "/static/places/tr-bali.jpg",
+	if id > 0 {
+		return photosByID[(id-1)%len(photosByID)]
 	}
-	if photo, ok := fallback[id]; ok {
-		return photo
+	if url == "" || strings.Contains(strings.ToLower(url), "unsplash") {
+		return photosByID[0]
 	}
 	return url
 }
 
+var countryByName = map[string]string{
+	"Россия": "RU", "Турция": "TR", "ОАЭ": "AE", "Таиланд": "TH", "Италия": "IT",
+	"Португалия": "PT", "Испания": "ES", "Франция": "FR", "Япония": "JP",
+	"Черногория": "ME", "Грузия": "GE", "Греция": "GR", "Египет": "EG",
+	"Армения": "AM", "Германия": "DE", "Чехия": "CZ", "Индонезия": "ID",
+	"Мальдивы": "MV",
+}
+
 func countryCode(name string) string {
-	switch name {
-	case "Россия":
-		return "RU"
-	case "Турция":
-		return "TR"
-	case "ОАЭ":
-		return "AE"
-	case "Таиланд":
-		return "TH"
-	case "Италия":
-		return "IT"
-	default:
-		return ""
-	}
+	return countryByName[name]
 }
 
 func countryNames(codes []string) []string {
 	out := make([]string, 0, len(codes))
 	for _, code := range codes {
-		switch code {
-		case "RU":
-			out = append(out, "Россия")
-		case "TR":
-			out = append(out, "Турция")
-		case "AE":
-			out = append(out, "ОАЭ")
-		case "TH":
-			out = append(out, "Таиланд")
-		case "IT":
-			out = append(out, "Италия")
+		for name, mapped := range countryByName {
+			if mapped == code {
+				out = append(out, name)
+				break
+			}
 		}
 	}
 	return out

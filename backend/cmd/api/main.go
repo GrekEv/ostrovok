@@ -29,7 +29,11 @@ func main() {
 	}
 	pg, err := store.Open(ctx, dbURL)
 	if err != nil {
-		log.Printf("postgres недоступна (%v) — API в памяти. Для хакатона: docker compose up", err)
+		if os.Getenv("OSTROVOK_ALLOW_MEMORY") == "true" {
+			log.Printf("WARNING: PostgreSQL недоступна (%v) — включено явное разрешение на memory-store", err)
+		} else {
+			log.Fatalf("PostgreSQL недоступна: %v. Запустите docker compose up --build или задайте DATABASE_URL. Для локальной разработки без БД явно установите OSTROVOK_ALLOW_MEMORY=true", err)
+		}
 	} else {
 		defer pg.Close()
 		handler = httpapi.NewMuxWithStore(pg)

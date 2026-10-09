@@ -57,6 +57,43 @@ func (m *Memory) SaveSwipe(_ context.Context, swipe domain.Swipe) error {
 	return nil
 }
 
+func (m *Memory) Liked(_ context.Context, guestID string) ([]domain.Offer, error) {
+	out := make([]domain.Offer, 0)
+	for i := len(m.swipes[guestID]) - 1; i >= 0; i-- {
+		swipe := m.swipes[guestID][i]
+		if !swipe.Liked {
+			continue
+		}
+		if offer, ok := catalog.ByID(swipe.OfferID); ok {
+			out = append(out, offer)
+		}
+	}
+	return out, nil
+}
+
+func (m *Memory) DeleteLike(_ context.Context, guestID, offerID string) error {
+	list := m.swipes[guestID]
+	next := list[:0]
+	for _, swipe := range list {
+		if swipe.OfferID == offerID && swipe.Liked {
+			continue
+		}
+		next = append(next, swipe)
+	}
+	m.swipes[guestID] = next
+	return nil
+}
+
+func (m *Memory) SwipeCounts(_ context.Context, guestID string) (int, int, error) {
+	likes := 0
+	for _, swipe := range m.swipes[guestID] {
+		if swipe.Liked {
+			likes++
+		}
+	}
+	return likes, len(m.swipes[guestID]), nil
+}
+
 func (m *Memory) Search(_ context.Context, city string, maxPrice int) ([]domain.Offer, error) {
 	needle := strings.ToLower(strings.TrimSpace(city))
 	out := make([]domain.Offer, 0)
